@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+
+    <select id="findByName"  resultType="com.example.vo.User">
+		select * from tbl_user
+        where username= #{username}
+	</select>
+
+
+    <select id="queryRoleByUserId" resultType="com.example.entity.Role">
+       select t1.role_id,t2.role_name from tbl_user_role t1,tbl_role t2  where t2.role_id=t1.role_id and user_id=#{id}
+    </select>
+
+    <select id="findAll" resultType="map">
+        select * from tbl_role
+    </select>
+
+    <select id="findByRoleName" resultType="map">
+       SELECT role_id,path FROM tbl_resource t1,tbl_role_resource t2
+    where t1.resource_id=t2.resource_id and role_id=#{auth}
+    </select>
+
+    <insert id="addUser" parameterType="com.example.vo.User">
+        insert into tbl_user(username,password,enabled,locked)
+        values(#{username},#{password},1,0)
+    </insert>
+
+    <select id="exists" parameterType="com.example.vo.User" resultType="int">
+        select count(1) from tbl_user where username=#{username}
+    </select>
+</mapper>

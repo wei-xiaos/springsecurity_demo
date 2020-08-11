@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ResourceMapper">
+    <insert id="addResource" parameterType="com.example.entity.Resource">
+      insert into tbl_resource(path) values(#{path})
+    </insert>
+
+    <update id="updateResource" parameterType="com.example.entity.Resource">
+      update tbl_resource
+      set path=#{path}
+      where resource_id=#{resourceId}
+    </update>
+
+    <delete id="delResource" parameterType="com.example.entity.Resource">
+      delete from tbl_resource where resource_id=#{resourceId}
+    </delete>
+
+    <select id="queryResourceInfo" parameterType="com.example.entity.Resource" resultType="com.example.entity.Resource">
+       select resource_id,path from tbl_resource
+    </select>
+
+    <select id="exists" parameterType="com.example.entity.Resource" resultType="int">
+        select count(1) from tbl_resource where path=#{path}
+    </select>
+</mapper>

@@ -1,0 +1,28 @@
+server:
+  port: 8075
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+  thymeleaf:
+    suffix: .html
+    prefix: classpath:templates/
+    mode: html
+    cache: false
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+mconfig:
+  swagger-ui-open: true
+
+
+
